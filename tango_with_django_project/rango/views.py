@@ -13,8 +13,8 @@ def index(request):
 	# We make use of the shortcut function to make our lives easier.
 	# Note that the first parameter is the template we wish to use.
 	#request.session.set_test_cookie()
-	#return render(request, 'rango/index.html', context=context_dict)
-	return HttpResponse("Rango says hey there partner! <br> <a href='/rango/about/'>About</a>")
+	return render(request, 'rango/index.html', context=context_dict) # chp-4
+	#return HttpResponse("Rango says hey there partner! <br> <a href='/rango/about/'>About</a>")
 
 
 def about(request):
@@ -23,7 +23,10 @@ def about(request):
 		print("TEST COOKIE WORKED!")
 		request.session.delete_test_cookie()
 	'''
-	return HttpResponse("Rango says here is the about page. <br> <a href='/rango/'>Index</a>")
+	context_msg = {'boldmessage': "here is the about page."}
+
+	#return HttpResponse("Rango says here is the about page. <br> <a href='/rango/'>about</a>") # chp-3
+	return render(request, 'rango/about.html', context=context_msg)
 
 '''
 def visitor_cookie_handler(request, response):
